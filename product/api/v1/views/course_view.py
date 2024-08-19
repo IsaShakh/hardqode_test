@@ -11,7 +11,7 @@ from api.v1.serializers.course_serializer import (CourseSerializer,
                                                   GroupSerializer,
                                                   LessonSerializer)
 from api.v1.serializers.user_serializer import SubscriptionSerializer
-from courses.models import Course
+from courses.models import Course, Group
 from users.models import Subscription
 
 
