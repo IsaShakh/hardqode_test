@@ -22,6 +22,11 @@ urlpatterns = [
     path("auth/", include('djoser.urls.authtoken')),
     # Создание нового пользователя api/v1/auth/users/
     # Авторизация пользователя     api/v1/auth/token/login/
+    path(
+        'courses/<int:pk>/pay/',
+        CourseViewSet.as_view({'post': 'pay'}),
+        name='course-pay'
+    ),
 ]
 
 urlpatterns += [

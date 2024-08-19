@@ -6,7 +6,9 @@ class Course(models.Model):
 
     author = models.CharField(
         max_length=250,
+        unique=True,
         verbose_name='Автор',
+
     )
     title = models.CharField(
         max_length=250,
@@ -16,6 +18,15 @@ class Course(models.Model):
         auto_now=False,
         auto_now_add=False,
         verbose_name='Дата и время начала курса'
+    )
+    price = models.DecimalField(
+        max_digits=6, 
+        decimal_places=2,
+        verbose_name='Цена',
+    )
+    is_available = models.BooleanField(
+        default=True,
+        verbose_name='Доступен к покупке'
     )
 
     # TODO
@@ -40,8 +51,12 @@ class Lesson(models.Model):
         max_length=250,
         verbose_name='Ссылка',
     )
-
-    # TODO
+    course = models.ForeignKey(
+        Course, 
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
 
     class Meta:
         verbose_name = 'Урок'
@@ -54,8 +69,15 @@ class Lesson(models.Model):
 
 class Group(models.Model):
     """Модель группы."""
-
-    # TODO
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        verbose_name='Курс'
+    )
+    name = models.CharField(
+        max_length=200,
+        verbose_name='Название группы'
+    )
 
     class Meta:
         verbose_name = 'Группа'
